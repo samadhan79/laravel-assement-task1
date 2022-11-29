@@ -14,6 +14,12 @@ return new class extends Migration
     public function up()
     {
          Schema::table('users', function ($table) {
+            $table->string('fname')->nullable();
+            $table->string('lname')->nullable();
+            $table->string('email')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('google_id')->nullable();
         });
     }
