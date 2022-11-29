@@ -43,6 +43,28 @@ class UserController extends Controller
     }
 }
 
+function Signup (Request $request)
+{
+    if($request->input('signup')){
+        $user = new User;
+        $user->fname = $request->input('fname');
+        $user->lname = $request->input('lname');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->dob = $request->input('dob');
+        $user->income = $request->input('income');
+        $user->gender = $request->input('gender');
+        $user->job = $request->input('job');
+        $user->familytype = $request->input('familytype');
+        $user->mangilik = $request->input('manglik');
+        $user->role_id = 1;
+        $user->save();
+
+    }
+    
+    return view('Signup');
+}
+
 
 
 }

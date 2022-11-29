@@ -16,25 +16,26 @@
             <div class="col-md-8">
                 <h1>Registration</h1>
                 <form method="POST">
+                    @csrf
 
                     <div class="row">
                       <div class="col">
                         <div class="mb-3">
                           <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                          <input type="text" name="firstname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
+                          <input type="text" name="fname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
                       </div>
                   </div>
                   <div class="col">
                      <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">LastName</label>
-                      <input type="text" name="lastname" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your LastName">
+                      <input type="text" name="lname" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your LastName">
                   </div>
 
               </div>
               <div class="col">
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Email">
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Email" name="email">
               </div>        
           </div>
 
@@ -46,7 +47,7 @@
           <div class="col">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Password">
+              <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Password" name="password">
           </div>
       </div>
       <div class="col">
@@ -62,26 +63,17 @@
       </div>
   </div>
 </div>
-
-
-</div>
-
-
-
 <div class="row">
-
-
-
 
   <div class="col">
     <div class="mb-3">
         <label>Gender</label>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="option1">
+            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male">
             <label class="form-check-label" for="inlineRadio1">Male</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="option1">
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Female">
           <label class="form-check-label" for="inlineRadio1">Female</label>
       </div>
   </div>
@@ -90,10 +82,9 @@
 
 </div>
 
-
 <div class="row">
     <div class="col">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" name="job">
             <option selected>Select Your Occupation</option>
             <option value="private">Private Job</option>
             <option value="goverment">Govermnet Job</option>
@@ -101,30 +92,41 @@
         </select>
     </div>
     <div class="col">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Family Type</option>
-            <option value="1">Joint Family </option>
-            <option value="2">Nuclear Family</option>
+        <select class="form-select" aria-label="Default select example" name="familytype">
+            <option value="">Family Type</option>
+            <option value="jointfamily">Joint Family </option>
+            <option value="nuclearfamily">Nuclear Family</option>
 
         </select>
     </div>
     <div class="col"> 
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Manglik </option>
-            <option value="1">Yes</option>
-            <option value="2">No</option>
-            <option value="3">Both</option>
+        <select class="form-select" aria-label="Default select example" name="manglik">
+            <option value="">Manglik </option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            <option value="both">Both</option>
         </select>
     </div>
 
 </div>
+
 <div class="d-grid gap-2 mb-3 mt-4">
     <input type="submit" name="signup" class="btn btn-primary btn-block" value="Signup">    
 </div>
 
-<div class="text-center">
+<div class="text-center d-grid">
     <a href="{{route('login')}}" class="btn btn-danger align-center">Login with Google </a>
 </div>
+
+</div>
+
+
+
+
+
+
+
+
 
 </form>
 </div>

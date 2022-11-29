@@ -14,10 +14,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('Login');
-});
+// Route::get('/', function () {
+//     return view('Login');
+// });
 
+
+Route::get('/', [UserController::class, 'Signup'])->name('signup');
+Route::post('/', [UserController::class, 'Signup'])->name('signup');
 Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('login');
 Route::get('callback', [UserController::class, 'handleGoogleCallback'])->name('callback');
 Route::get('dashboard', [HomeController::class, 'Dashboard'])->name('dashboard');
