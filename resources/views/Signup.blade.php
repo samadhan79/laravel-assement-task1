@@ -22,20 +22,29 @@
                       <div class="col">
                         <div class="mb-3">
                           <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                          <input type="text" name="fname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
+                          <input type="text" name="fname" class="form-control" value="{{old('fname')}}"  placeholder="Enter your name">
+                          @error('fname')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                       </div>
                   </div>
                   <div class="col">
                      <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">LastName</label>
-                      <input type="text" name="lname" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your LastName">
+                      <input type="text" name="lname" class="form-control" value="{{old('lname')}}" placeholder="Enter Your LastName">
+                      @error('lname')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
                   </div>
 
               </div>
               <div class="col">
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Email" name="email">
+                  <input type="email" class="form-control" value="{{old('email')}}" placeholder="Enter Your Email" name="email">
+                  @error('email')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
               </div>        
           </div>
 
@@ -47,19 +56,28 @@
           <div class="col">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Password" name="password">
+              <input type="password" class="form-control" value="{{old('password')}}" placeholder="Enter Your Password" name="password">
+              @error('password')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
           </div>
       </div>
       <div class="col">
           <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">DOB</label>
-              <input type="date" class="form-control" name="dob" >
+              <input type="date" class="form-control" name="dob" value="{{old('dob')}}" >
+              @error('dob')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
           </div>
       </div>
       <div class="col">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Income</label>
-          <input type="text" class="form-control" name="income" >
+          <input type="text" class="form-control" name="income" value="{{old('income')}}" >
+          @error('income')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
       </div>
   </div>
 </div>
@@ -115,7 +133,7 @@
 </div>
 
 <div class="text-center d-grid">
-    <a href="{{route('login')}}" class="btn btn-danger align-center">Login with Google </a>
+    <a href="{{route('loginwithgoogle')}}" class="btn btn-danger align-center">Login with Google </a>
 </div>
 
 </div>

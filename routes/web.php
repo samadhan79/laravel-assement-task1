@@ -19,8 +19,17 @@ use App\Http\Controllers\HomeController;
 // });
 
 
-Route::get('/', [UserController::class, 'Signup'])->name('signup');
-Route::post('/', [UserController::class, 'Signup'])->name('signup');
-Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('login');
+
+
+Route::get('/', [UserController::class, 'Login'])->name('login');
+Route::post('/', [UserController::class, 'Login'])->name('login');
+Route::get('/signup', [UserController::class, 'Signup'])->name('signup');
+Route::post('/signup', [UserController::class, 'Signup'])->name('signup');
+
+
+Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('loginwithgoogle');
+
+
 Route::get('callback', [UserController::class, 'handleGoogleCallback'])->name('callback');
 Route::get('dashboard', [HomeController::class, 'Dashboard'])->name('dashboard');
+Route::get('logout', [UserController::class, 'Logout'])->name('logout');
