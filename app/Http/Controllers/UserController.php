@@ -19,7 +19,9 @@ class UserController extends Controller
     function handleGoogleCallback(Request $request)
     {
 
-     try {
+        
+
+       try {
         $user = Socialite::driver('google')->stateless()->user();
 
         $finduser = User::where('google_id', $user->id)->first();
@@ -34,6 +36,7 @@ class UserController extends Controller
             $newUser = User::create([
                 'fname' => $user->name,
                 'email' => $user->email,
+                'age'=> $user->age,
                 'google_id'=> $user->id,
                 'role_id'=> 2,
                 'password' => Hash::make('123')
@@ -61,6 +64,9 @@ function Login(Request $request){
                 if($user->role_id == 2){
                     $request->session()->put('user',$user);
                     return redirect()->route('dashboard');    
+                }elseif ($user->role_id == 1) {
+                    $request->session()->put('admin',$user);
+                    return redirect()->route('admin');    
                 }
                 
             }
@@ -73,7 +79,7 @@ function Signup (Request $request)
 {
     if($request->input('signup')){
 
-     $validated = $request->validate([
+       $validated = $request->validate([
         'fname' => 'required',
         'lname' => 'required',
         'email' => 'required|unique:users|max:255',
@@ -85,32 +91,35 @@ function Signup (Request $request)
         'familytype' => 'required',
     ]);
 
-     $user = new User;
-     $user->fname = $request->input('fname');
-     $user->lname = $request->input('lname');
-     $user->email = $request->input('email');
-     $user->password = Hash::make($request->input('password'));
-     $user->dob = $request->input('dob');
-     $user->income = $request->input('income');
-     $user->gender = $request->input('gender');
-     $user->job = $request->input('job');
-     $user->familytype = $request->input('familytype');
-     $user->mangilik = $request->input('manglik');
-     $user->role_id = 2;
-     $user->save();
-     $request->session()->put('user',$user);
-     return redirect()->route('dashboard');
- }
+       $user = new User;
+       $user->fname = $request->input('fname');
+       $user->lname = $request->input('lname');
+       $user->email = $request->input('email');
+       $user->password = Hash::make($request->input('password'));
+       $user->dob = $request->input('dob');
+       $user->income = $request->input('income');
+       $user->gender = $request->input('gender');
+       $user->job = $request->input('job');
+       $user->familytype = $request->input('familytype');
+       $user->mangilik = $request->input('manglik');
+       $user->role_id = 2;
+       $user->save();
+       $request->session()->put('user',$user);
+       return redirect()->route('dashboard');
+   }
 
- return view('Signup');
+   return view('Signup');
 }
 function Logout(Request $request){
-   if($request->session()->has('user')){
+ if($request->session()->has('user')){
 
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->forget('user');
     $request->session()->regenerateToken();
+    $request->session()->flush();
+    return redirect()->route('login');
+}elseif($request->session()->has('admin')){
     $request->session()->flush();
     return redirect()->route('login');
 }

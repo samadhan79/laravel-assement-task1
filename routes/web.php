@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,7 @@ Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('lo
 Route::get('callback', [UserController::class, 'handleGoogleCallback'])->name('callback');
 Route::get('dashboard', [HomeController::class, 'Dashboard'])->name('dashboard');
 Route::get('logout', [UserController::class, 'Logout'])->name('logout');
+
+
+Route::get('/admin', [AdminController::class, 'Home'])->name('admin');
+Route::get('/admin/users', [AdminController::class, 'Users'])->name('users');
